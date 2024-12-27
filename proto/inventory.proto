@@ -2,15 +2,9 @@ syntax = "proto3";
 
 service InventoryService {
     rpc SearchAllProducts(Empty) returns (ProductsResponse) {}
-    rpc SearchProductByID(Payload) returns (ProductResponse) {}
 }
 
 message Empty{}
-
-message Payload {
-    int32 id = 1;
-}
-
 
 message ProductResponse {
     int32 id = 1;
@@ -24,11 +18,3 @@ message ProductResponse {
 message ProductsResponse {
     repeated ProductResponse products = 1;
 }
-
-    SearchProductByID: (payload, callback) => {
-        callback(
-            null,
-            products.find((product) => product.id == payload.request.id)
-        );
-    },
-
